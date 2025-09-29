@@ -1,4 +1,3 @@
-# main.py
 import os
 import json
 import re
@@ -14,7 +13,7 @@ from langchain.tools import Tool
 from langchain_community.utilities import SerpAPIWrapper
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-# Google Generative AI SDK (to list models)
+# Google Generative AI SDK
 import google.generativeai as genai
 
 load_dotenv()
@@ -33,7 +32,6 @@ genai.configure(api_key=GOOGLE_API_KEY)
 available_models = list(genai.list_models())
 available_names = [m.name for m in available_models]
 
-# Priority order (based on what your key actually supports)
 PREFERRED_MODELS = [
     "models/gemini-2.5-flash",
     "models/gemini-2.5-pro",
@@ -55,7 +53,6 @@ if not SELECTED_MODEL:
 app = FastAPI(title="Demanual AI - News→LinkedIn Post", version="1.2")
 
 
-# ---------- Pydantic Models ----------
 class GenerateRequest(BaseModel):
     topic: str
 
@@ -167,7 +164,7 @@ Do not include any other text.
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"LLM generation failed: {e}")
-        
+
     # Parse JSON
     json_text = None
     m = re.search(r"(\{[\s\S]*\})", resp)
@@ -201,4 +198,5 @@ def read_root():
         "service": "demanualai-news-linkedin-post",
         "using_model": SELECTED_MODEL,
     }
+
 
