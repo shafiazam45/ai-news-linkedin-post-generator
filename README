@@ -1,0 +1,19 @@
+## Setup (local)
+1. Clone repo
+2. Create `.env` with GOOGLE_API_KEY and SERPAPI_API_KEY
+3. python -m venv venv && venv\Scripts\activate
+4. pip install -r requirements.txt
+5. uvicorn main:app --reload --port 8080
+6. Open Swagger at: http://localhost:8080/docs
+
+## Endpoint
+POST /generate-post
+Body: { "topic": "Artificial Intelligence" }
+
+Response:
+{
+  "topic": "Artificial Intelligence",
+  "news_sources": [...],
+  "linkedin_post": "...",
+  "image_suggestion": null
+}

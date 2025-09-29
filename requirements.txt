@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+langchain>=0.0.200
+langchain-google-genai
+langchain-community
+google-generativeai
+python-dotenv
+httpx
+serpapi
+google-search-results
